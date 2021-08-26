@@ -1,0 +1,12 @@
+{
+	"picList":[
+		{"url":"../../static/image/pic1.png","height":"400"},
+		{"url":"../../static/image/pic2.png","height":"320"},
+		{"url":"../../static/image/pic3.png","height":"250"},
+		{"url":"../../static/image/pic4.png","height":"500"},
+		{"url":"../../static/image/pic3.png","height":"420"},
+		{"url":"../../static/image/pic4.png","height":"330"},
+		{"url":"../../static/image/pic1.png","height":"290"},
+		{"url":"../../static/image/pic2.png","height":"370"}
+	]
+}
