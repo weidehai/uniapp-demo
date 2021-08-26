@@ -12,7 +12,12 @@
 	export default {
 		data() {
 			return {
+				// #ifdef H5
 				picColumnNum:4,
+				// #endif
+				// #ifndef H5
+				picColumnNum:2,
+				// #endif
 				picColumn:{info:[],data:[]},
 				columnWidth:0,
 				picList:manifest.picList,
@@ -20,14 +25,21 @@
 			}
 		},
 		onLoad() {
-			// #ifdef H5
-			this.initStyle()
-			this.generatePicColumn()
-			// #endif
+			uni.getSystemInfo({
+				success:(res)=> {
+					this.initStyle(res.windowWidth)
+					this.generatePicColumn()
+				}
+			})
 		},
 		methods: {
-			calculateColumnWidth(){
-				this.columnWidth = Math.floor((document.body.offsetWidth-17) / this.picColumnNum)
+			calculateColumnWidth(windowWidth){
+				// #ifdef H5
+				this.columnWidth = Math.floor((windowWidth-17) / this.picColumnNum)
+				// #endif
+				// #ifndef H5
+				this.columnWidth = Math.floor((windowWidth) / this.picColumnNum)
+				// #endif
 				return this.columnWidth
 			},
 			generatePicColumn(){
@@ -62,8 +74,8 @@
 				})
 				return candidateCol
 			},
-			initStyle(){
-				this.picStyle = `width:${this.calculateColumnWidth()}px;`
+			initStyle(windowWidth){
+				this.picStyle = `width:${this.calculateColumnWidth(windowWidth)}px;`
 			}
 			
 		}
